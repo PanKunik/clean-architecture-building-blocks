@@ -1,0 +1,41 @@
+name: Publish NuGet Package
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup .NET 10
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '10.0.x'
+
+    - name: Cache NuGet packages
+      uses: actions/cache@v3
+      with:
+        path: ~/.nuget/packages
+        key: ${{ runner.os }}-nuget-${{ hashFiles('src/**/*.csproj') }}
+        restore-keys: |
+          ${{ runner.os }}-nuget-
+
+    - name: Restore dependencies
+      run: |
+          dotnet restore CleanArchitecture.BuildingBlocks.sln
+          dotnet build CleanArchitecture.BuildingBlocks.sln --configuration Release --no-restore 
+          
+    - name: Pack NuGet package
+      run: dotnet pack CleanArchitecture.BuildingBlocks.sln --configuration Release -o ./bin/Release --no-build --no-restore
+
+    - name: Publish to GitHub Packages
+      run: |
+        dotnet nuget push ./bin/Release/*.nupkg \
+          --source https://nuget.pkg.github.com/pankunik/index.json \
+          --api-key ${{ secrets.GHCR_PAT }}
