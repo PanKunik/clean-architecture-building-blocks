@@ -1,9 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<PackageId>PanKunik.CleanArchitecture.BuildingBlocks</PackageId>
+		<Version>0.1.0</Version>
+		<Authors>Patryk Kunicki</Authors>
+		<Description>Building blocks for Clean Architecture and DDD concepts.</Description>
+		<PackageProjectUrl>https://github.com/pankunik/clean-architecture-building-blocks</PackageProjectUrl>
+		<PackageRepositoryUrl>https://github.com/pankunik/clean-architecture-building-blocks</PackageRepositoryUrl>
+		<PackageTags>clean-architecture;ddd;value-object;entity;domain</PackageTags>
+		<TargetFramework>net10.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
 
 </Project>
