@@ -3,7 +3,7 @@ namespace PanKunik.CleanArchitecture.BuildingBlocks.Unit.Tests;
 public class EntityTests
 {
     [Fact]
-    public async Task GetHashCode_WhenOtherHasSameIdAndType_ShouldBeEqual()
+    public void GetHashCode_WhenOtherHasSameIdAndType_ShouldBeEqual()
     {
         // Arrange
         FakeEntity cut = new(new(1), new("test"));
@@ -15,12 +15,10 @@ public class EntityTests
 
         // Assert
         Assert.Equal(cutHashCode, otherHashCode);
-
-        await Task.CompletedTask;
     }
 
     [Fact]
-    public async Task GetHashCode_WhenOtherHasDifferentIdValue_ShouldNotBeEqual()
+    public void GetHashCode_WhenOtherHasDifferentIdValue_ShouldNotBeEqual()
     {
         // Arrange
         FakeEntity cut = new(new(1), new("test"));
@@ -32,12 +30,10 @@ public class EntityTests
 
         // Assert
         Assert.NotEqual(cutHashCode, otherHashCode);
-
-        await Task.CompletedTask;
     }
 
     [Fact]
-    public async Task GetHashCode_WhenOtherHasDifferentIdTypeButSameValues_ShouldNotBeEqual()
+    public void GetHashCode_WhenOtherHasDifferentIdTypeButSameValues_ShouldNotBeEqual()
     {
         // Arrange
         FakeEntity cut = new(new(1), new("test"));
@@ -49,24 +45,20 @@ public class EntityTests
 
         // Assert
         Assert.NotEqual(cutHashCode, otherHashCode);
-
-        await Task.CompletedTask;
     }
 
     [Fact]
-    public async Task Entity_WhenIdIsNull_ShouldThrowArgumentNullException()
+    public void Entity_WhenIdIsNull_ShouldThrowArgumentNullException()
     {
         // Arrange
         FakeEntity CreateEntity() => new(null!, new("fake-name"));
 
         // Act && Assert
         Assert.Throws<ArgumentNullException>((Func<FakeEntity>)CreateEntity);
-
-        await Task.CompletedTask;
     }
 
     [Fact]
-    public async Task Equals_WhenOtherHasSameReference_ShouldReturnTrue()
+    public void Equals_WhenOtherHasSameReference_ShouldReturnTrue()
     {
         // Arrange
         var fakeEntity = new FakeEntity(new(1), new("fake-name"));
@@ -77,12 +69,10 @@ public class EntityTests
         
         // Assert
         Assert.True(result);
-
-        await Task.CompletedTask;
     }
 
     [Fact]
-    public async Task Equals_WhenOtherIsNull_ShouldReturnFalse()
+    public void Equals_WhenOtherIsNull_ShouldReturnFalse()
     {
         // Arrange
         var fakeEntity = new FakeEntity(new(1), new("fake-name"));
@@ -93,12 +83,10 @@ public class EntityTests
         
         // Assert
         Assert.False(result);
-        
-        await Task.CompletedTask;
     }
 
     [Fact]
-    public async Task Equals_WhenOtherHasDifferentType_ShouldReturnFalse()
+    public void Equals_WhenOtherHasDifferentType_ShouldReturnFalse()
     {
         // Arrange
         var fakeEntity = new FakeEntity(new(1), new("fake-name"));
@@ -109,12 +97,10 @@ public class EntityTests
         
         // Assert
         Assert.False(result);
-
-        await Task.CompletedTask;
     }
 
     [Fact]
-    public async Task Equals_WhenOtherHasSameIdAndType_ShouldReturnTrue()
+    public void Equals_WhenOtherHasSameIdAndType_ShouldReturnTrue()
     {
         // Arrange
         var fakeEntity = new FakeEntity(new(1), new("fake-name"));
@@ -125,12 +111,10 @@ public class EntityTests
         
         // Assert
         Assert.True(result);
-        
-        await Task.CompletedTask;
     }
 
     [Fact]
-    public async Task Equals_WhenOtherHasDifferentId_ShouldReturnFalse()
+    public void Equals_WhenOtherHasDifferentId_ShouldReturnFalse()
     {
         // Arrange
         var fakeEntity = new FakeEntity(new(1), new("fake-name"));
@@ -141,12 +125,10 @@ public class EntityTests
         
         // Assert
         Assert.False(result);
-        
-        await Task.CompletedTask;
     }
 
     [Fact]
-    public async Task OperatorEquals_WhenBothAreNull_ShouldReturnTrue()
+    public void OperatorEquals_WhenBothAreNull_ShouldReturnTrue()
     {
         // Arrange
         FakeEntity? entity = null;
@@ -157,12 +139,10 @@ public class EntityTests
         
         // Assert
         Assert.True(result);
-        
-        await Task.CompletedTask;
     }
 
     [Fact]
-    public async Task OperatorEquals_WhenOneIsNull_ShouldReturnFalse()
+    public void OperatorEquals_WhenOneIsNull_ShouldReturnFalse()
     {
         // Arrange
         var fakeEntity = new FakeEntity(new(1), new("fake-name"));
@@ -173,12 +153,10 @@ public class EntityTests
         
         // Assert
         Assert.False(result);
-        
-        await Task.CompletedTask;
     }
 
     [Fact]
-    public async Task OperatorEquals_WhenOtherHasSameIdAndType_ShouldReturnTrue()
+    public void OperatorEquals_WhenOtherHasSameIdAndType_ShouldReturnTrue()
     {
         // Arrange
         var fakeEntity = new FakeEntity(new(1), new("fake-name"));
@@ -189,12 +167,10 @@ public class EntityTests
         
         // Assert
         Assert.True(result);
-        
-        await Task.CompletedTask;
     }
 
     [Fact]
-    public async Task OperatorEquals_WhenOtherHasDifferentId_ShouldReturnFalse()
+    public void OperatorEquals_WhenOtherHasDifferentId_ShouldReturnFalse()
     {
         // Arrange
         var fakeEntity = new FakeEntity(new(1), new("fake-name"));
@@ -205,12 +181,10 @@ public class EntityTests
         
         // Assert
         Assert.False(result);
-        
-        await Task.CompletedTask;
     }
 
     [Fact]
-    public async Task OperatorNotEquals_WhenBothAreNull_ShouldReturnFalse()
+    public void OperatorNotEquals_WhenBothAreNull_ShouldReturnFalse()
     {
         // Arrange
         FakeEntity? entity = null;
@@ -221,12 +195,10 @@ public class EntityTests
         
         // Assert
         Assert.False(result);
-        
-        await Task.CompletedTask;
     }
 
     [Fact]
-    public async Task OperatorNotEquals_WhenOneIsNull_ShouldReturnTrue()
+    public void OperatorNotEquals_WhenOneIsNull_ShouldReturnTrue()
     {
         // Arrange
         var fakeEntity = new FakeEntity(new(1), new("fake-name"));
@@ -237,12 +209,10 @@ public class EntityTests
         
         // Assert
         Assert.True(result);
-        
-        await Task.CompletedTask;
     }
 
     [Fact]
-    public async Task OperatorNotEquals_WhenOtherHasSameIdAndType_ShouldReturnFalse()
+    public void OperatorNotEquals_WhenOtherHasSameIdAndType_ShouldReturnFalse()
     {
         // Arrange
         var fakeEntity = new FakeEntity(new(1), new("fake-name"));
@@ -253,12 +223,10 @@ public class EntityTests
         
         // Assert
         Assert.False(result);
-        
-        await Task.CompletedTask;
     }
 
     [Fact]
-    public async Task OperatorNotEquals_WhenOtherHasDifferentId_ShouldReturnTrue()
+    public void OperatorNotEquals_WhenOtherHasDifferentId_ShouldReturnTrue()
     {
         // Arrange
         var fakeEntity = new FakeEntity(new(1), new("fake-name"));
@@ -269,8 +237,6 @@ public class EntityTests
         
         // Assert
         Assert.True(result);
-        
-        await Task.CompletedTask;
     }
     
     private sealed class FakeEntity(

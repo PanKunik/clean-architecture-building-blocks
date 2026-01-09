@@ -3,19 +3,17 @@ namespace PanKunik.CleanArchitecture.BuildingBlocks.Unit.Tests;
 public class EntityIdTests
 {
     [Fact]
-    public async Task EntityId_WhenCalledWithNullValue_ShouldThrowArgumentNullExcetpion()
+    public void EntityId_WhenCalledWithNullValue_ShouldThrowArgumentNullExcetpion()
     {
         // Arrange
         var createEntityId = () => new StringId(null);
 
         // Act && Assert
         Assert.Throws<ArgumentNullException>(createEntityId);
-
-        await Task.CompletedTask;
     }
 
     [Fact]
-    public async Task ToString_WhenCalled_ShouldReturnExpectedString()
+    public void ToString_WhenCalled_ShouldReturnExpectedString()
     {
         // Arrange
         var cut = new IntId(2);
@@ -25,14 +23,12 @@ public class EntityIdTests
 
         // Assert
         Assert.Equal("2", result);
-
-        await Task.CompletedTask;
     }
 
     [Theory]
     [InlineData("00000000-0000-0000-0000-000000000001", "00000000-0000-0000-0000-000000000001")]
     [InlineData("A0032000-00C0-0080-0000-00F020000101", "A0032000-00C0-0080-0000-00F020000101")]
-    public async Task GetHashCode_WhenCalledForSameValues_ShouldBeEqual(string value, string otherValue)
+    public void GetHashCode_WhenCalledForSameValues_ShouldBeEqual(string value, string otherValue)
     {
         // Arrange
         var cut = new ActivityId(Guid.Parse(value));
@@ -44,14 +40,12 @@ public class EntityIdTests
 
         // Assert
         Assert.Equal(cutHashCode, otherHashCode);
-
-        await Task.CompletedTask;
     }
 
     [Theory]
     [InlineData("A0032000-00C0-0080-0000-00F020000101", "00000000-0000-0000-0000-000000000001")]
     [InlineData("00000000-0000-0000-0000-000000000001", "A0032000-00C0-0080-0000-00F020000101")]
-    public async Task GetHashCode_WhenCalledForOtherValues_ShouldNotBeEqual(string value, string otherValue)
+    public void GetHashCode_WhenCalledForOtherValues_ShouldNotBeEqual(string value, string otherValue)
     {
         // Arrange
         var cut = new ActivityId(Guid.Parse(value));
@@ -63,12 +57,10 @@ public class EntityIdTests
 
         // Assert
         Assert.NotEqual(cutHashCode, otherHashCode);
-
-        await Task.CompletedTask;
     }
 
     [Fact]
-    public async Task Equals_WhenOtherIsNotValueObject_ShouldReturnFalse()
+    public void Equals_WhenOtherIsNotValueObject_ShouldReturnFalse()
     {
         // Arrange
         var guid = Guid.NewGuid();
@@ -80,13 +72,11 @@ public class EntityIdTests
 
         // Assert
         Assert.False(result);
-
-        await Task.CompletedTask;
     }
 
 
     [Fact]
-    public async Task Equals_WhenOtherHasSameValue_ShouldReturnTrue()
+    public void Equals_WhenOtherHasSameValue_ShouldReturnTrue()
     {
         // Arrange
         var guid = Guid.NewGuid();
@@ -98,12 +88,11 @@ public class EntityIdTests
         
         // Assert
         Assert.True(result);
-        
-        await Task.CompletedTask;
+       
     }
 
     [Fact]
-    public async Task Equals_WhenOtherHasDifferentValue_ShouldReturnFalse()
+    public void Equals_WhenOtherHasDifferentValue_ShouldReturnFalse()
     {
         // Arrange
         var cut = new UserId(Guid.NewGuid());
@@ -114,12 +103,10 @@ public class EntityIdTests
         
         // Assert
         Assert.False(result);
-
-        await Task.CompletedTask;
     }
 
     [Fact]
-    public async Task Equals_WhenOtherValueHasSameValueButDifferentType_ShouldReturnFalse()
+    public void Equals_WhenOtherValueHasSameValueButDifferentType_ShouldReturnFalse()
     {
         // Arrange
         var guid = Guid.NewGuid();
@@ -131,12 +118,10 @@ public class EntityIdTests
         
         // Assert
         Assert.False(result);
-
-        await Task.CompletedTask;
     }
 
     [Fact]
-    public async Task EqualOperator_WhenOtherHasSameValue_ShouldReturnTrue()
+    public void EqualOperator_WhenOtherHasSameValue_ShouldReturnTrue()
     {
         // Arrange
         var guid = Guid.NewGuid();
@@ -148,12 +133,11 @@ public class EntityIdTests
         
         // Assert
         Assert.True(result);
-        
-        await Task.CompletedTask;
+       
     }
 
     [Fact]
-    public async Task EqualOperator_WhenOtherHasDifferentValue_ShouldReturnFalse()
+    public void EqualOperator_WhenOtherHasDifferentValue_ShouldReturnFalse()
     {
         // Arrange
         var cut = new UserId(Guid.NewGuid());
@@ -164,12 +148,10 @@ public class EntityIdTests
         
         // Assert
         Assert.False(result);
-
-        await Task.CompletedTask;
     }
 
     [Fact]
-    public async Task EqualOperator_WhenOtherValueHasSameValueButDifferentType_ShouldReturnFalse()
+    public void EqualOperator_WhenOtherValueHasSameValueButDifferentType_ShouldReturnFalse()
     {
         // Arrange
         var guid = Guid.NewGuid();
@@ -181,12 +163,10 @@ public class EntityIdTests
         
         // Assert
         Assert.False(result);
-
-        await Task.CompletedTask;
     }
     
     [Fact]
-    public async Task NotEqualOperator_WhenOtherHasSameValue_ShouldReturnFalse()
+    public void NotEqualOperator_WhenOtherHasSameValue_ShouldReturnFalse()
     {
         // Arrange
         var guid = Guid.NewGuid();
@@ -198,12 +178,11 @@ public class EntityIdTests
         
         // Assert
         Assert.False(result);
-        
-        await Task.CompletedTask;
+       
     }
 
     [Fact]
-    public async Task NotEqualOperator_WhenOtherHasDifferentValue_ShouldReturnTrue()
+    public void NotEqualOperator_WhenOtherHasDifferentValue_ShouldReturnTrue()
     {
         // Arrange
         var cut = new UserId(Guid.NewGuid());
@@ -214,12 +193,10 @@ public class EntityIdTests
         
         // Assert
         Assert.True(result);
-
-        await Task.CompletedTask;
     }
 
     [Fact]
-    public async Task NotEqualOperator_WhenOtherValueHasSameValueButDifferentType_ShouldReturnTrue()
+    public void NotEqualOperator_WhenOtherValueHasSameValueButDifferentType_ShouldReturnTrue()
     {
         // Arrange
         var guid = Guid.NewGuid();
@@ -231,8 +208,6 @@ public class EntityIdTests
         
         // Assert
         Assert.True(result);
-
-        await Task.CompletedTask;
     }
     
     private sealed class UserId(Guid value)
