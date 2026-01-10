@@ -3,12 +3,20 @@ name: Publish NuGet Package 'PanKunik.CleanArchitecture.BuildingBlocks' to publi
 on:
   push:
     tags:
-      - '*'
+      - 'v*'
 
 env:
   SOLUTION: PanKunik.CleanArchitecture.BuildingBlocks.sln
   CONFIGURATION: Release
 
+permissions:
+  contents: read
+  packages: write
+
+concurrency:
+  group: publish-nuget
+  cancel-in-progress: false
+  
 jobs:
   build_pack:
     name: Build & Pack
@@ -27,7 +35,10 @@ jobs:
 
       - name: Extract version from GitHub tag
         id: version
-        run: echo "version=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+        run: |
+          VERSION="${GITHUB_REF#refs/tags/v}"
+          echo "Version: $VERSION"
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Cache NuGet
         uses: actions/cache@v3
@@ -49,6 +60,8 @@ jobs:
             --configuration $CONFIGURATION \
             --no-build --no-restore \
             /p:PackageVersion=${{ steps.version.outputs.version }} \
+            /p:IncludeSymbols=true \
+            /p:SymbolPackageFormat=snupkg \
             -o ./nupkg
 
       - name: Upload NuGet package as artifact
@@ -106,5 +119,6 @@ jobs:
       - name: Publish to GitHub Packages
         run: |
           dotnet nuget push *.nupkg \
-            --source https://nuget.pkg.github.com/pankunik/index.json \
-            --api-key ${{ secrets.GHCR_PAT }}
+            --source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json \
+            --api-key ${{ secrets.GITHUB_TOKEN }}
+            --skip-duplicate

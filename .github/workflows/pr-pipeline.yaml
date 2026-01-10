@@ -9,6 +9,10 @@ env:
   SOLUTION: PanKunik.CleanArchitecture.BuildingBlocks.sln
   CONFIGURATION: Release
 
+concurrency:
+  group: publish-nuget
+  cancel-in-progress: false
+
 jobs:
   build:
     name: Build
