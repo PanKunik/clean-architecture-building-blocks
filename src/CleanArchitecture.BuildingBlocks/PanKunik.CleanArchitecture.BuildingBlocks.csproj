@@ -6,7 +6,8 @@
 		<Authors>Patryk Kunicki</Authors>
 		<Description>Building blocks for Clean Architecture and DDD concepts.</Description>
 		<PackageProjectUrl>https://github.com/pankunik/clean-architecture-building-blocks</PackageProjectUrl>
-		<PackageRepositoryUrl>https://github.com/pankunik/clean-architecture-building-blocks</PackageRepositoryUrl>
+		<RepositoryUrl>https://github.com/pankunik/clean-architecture-building-blocks</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
 		<PackageTags>clean-architecture;ddd;value-object;entity;domain</PackageTags>
 		<TargetFramework>net10.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
